@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+/car-parts-boot.iml
+/system.log
+/.idea/
+/target/
+=======
 # Compiled class file
 *.class
 
@@ -21,6 +27,4 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/car-parts-boot.iml
-/.idea/
-/target/
+>>>>>>> f3f177eed5f367392e06124a6bd0778ce96134c6

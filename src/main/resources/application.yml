@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: @profileActive@
+  application:
+    name: car-parts-boot
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  mvc:
+    favicon:
+      enabled: false
+    throw-exception-if-no-handler-found: true
+    view:
+      prefix: /WEB-INF/pages/
+      suffix: .jsp
+server:
+  tomcat:
+    uri-encoding: utf-8
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: configprops
+  endpoint:
+    health:
+      show-details: always
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
