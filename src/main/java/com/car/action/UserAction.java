@@ -1,20 +1,15 @@
 package com.car.action;
 
-import com.car.common.annotation.NoLoginRequired;
-import com.car.common.annotation.SysLog;
-import com.car.common.utils.JwtUtil;
 import com.car.pojo.TableData;
 import com.car.pojo.User;
 import com.car.service.UserService;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -38,8 +33,6 @@ public class UserAction {
         return "password";
     }
 
-    @NoLoginRequired
-    @SysLog(level = Level.INFO, operation = "用户登录")
     @RequestMapping(value = "/loginUser")
     @ResponseBody
     public Map login(User user, HttpServletResponse response, HttpSession session){
@@ -47,12 +40,6 @@ public class UserAction {
         User userLogin = userService.login(user);
         if(userLogin!=null){
             session.setAttribute("userLogin",userLogin);
-            // 生成token并将token写入到cookie中
-            String token = JwtUtil.sign(userLogin.getId(), userLogin.getRoleId(), userLogin.getNickname());
-            Cookie cookie = new Cookie("token", token);
-            cookie.setMaxAge(60 * 60 * 24 * 1);
-            cookie.setPath("*");
-            response.addCookie(cookie);
             map.put("code",200);
         }else{
             map.put("code",-1);

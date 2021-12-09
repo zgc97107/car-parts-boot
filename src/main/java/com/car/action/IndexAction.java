@@ -1,6 +1,5 @@
 package com.car.action;
 
-import com.car.common.annotation.NoLoginRequired;
 import com.car.pojo.Role;
 import com.car.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class IndexAction {
         return "index";
     }
 
-    @NoLoginRequired
+//    @NoLoginRequired
     @RequestMapping("login.html")
     public String login(ModelMap map) {
         List<Role> roleList = roleService.findAllRole();
